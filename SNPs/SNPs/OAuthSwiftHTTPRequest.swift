@@ -68,7 +68,9 @@ class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
     }
     
     func start() {
+        println("22")
         if !(request != nil) {
+            println("23")
             self.request = NSMutableURLRequest(URL: self.URL)
             self.request!.HTTPMethod = self.HTTPMethod
             self.request!.timeoutInterval = self.timeoutInterval
@@ -83,7 +85,7 @@ class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
             var nonOAuthParameters = self.parameters.filter { key, _ in !key.hasPrefix("oauth_") }
             
             if nonOAuthParameters.count > 0 {
-                if self.HTTPMethod == "GET" || self.HTTPMethod == "HEAD" || self.HTTPMethod == "DELETE" || self.HTTPMethod == "POST" {
+                if self.HTTPMethod == "GET" || self.HTTPMethod == "HEAD" || self.HTTPMethod == "DELETE" {
                     let queryString = nonOAuthParameters.urlEncodedQueryStringWithEncoding(self.dataEncoding)
                     self.request!.URL = self.URL.URLByAppendingQueryString(queryString)
                     self.request!.setValue("application/x-www-form-urlencoded; charset=\(charset)", forHTTPHeaderField: "Content-Type")
@@ -120,6 +122,7 @@ class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
+        println("24")
         self.response = response as? NSHTTPURLResponse
         
         self.responseData.length = 0
@@ -129,6 +132,7 @@ class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+        println("25")
         self.responseData.appendData(data)
     }
     
@@ -158,6 +162,7 @@ class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
     }
     
     class func stringWithData(data: NSData, encodingName: String?) -> String {
+        println("26")
         var encoding: UInt = NSUTF8StringEncoding
         
         if (encodingName != nil) {

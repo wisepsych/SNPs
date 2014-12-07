@@ -19,10 +19,12 @@ class OAuthSwiftCredential {
         
     }
     init(consumer_key: String, consumer_secret: String){
+        println("20")
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
     }
     init(oauth_token: String, oauth_token_secret: String){
+        println("21")
         self.oauth_token = oauth_token
         self.oauth_token_secret = oauth_token_secret
     }

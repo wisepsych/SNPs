@@ -41,6 +41,31 @@ extension String {
             if (key != nil && value != nil) {
                 parameters.updateValue(value!, forKey: key!)
             }
+        } 
+        
+        return parameters
+    }
+    
+    func parametersFromJSONString() -> Dictionary<String, String> {
+        var parameters = Dictionary<String, String>()
+        
+        let scanner = NSScanner(string: self)
+        
+        var key: NSString?
+        var value: NSString?
+        
+        while !scanner.atEnd {
+            key = nil
+            scanner.scanUpToString(":", intoString: &key)
+            scanner.scanString(":", intoString: nil)
+            
+            value = nil
+            scanner.scanUpToString(",", intoString: &value)
+            scanner.scanString(",", intoString: nil)
+            
+            if (key != nil && value != nil) {
+                parameters.updateValue(value!, forKey: key!)
+            }
         }
         
         return parameters

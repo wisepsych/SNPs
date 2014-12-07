@@ -27,7 +27,7 @@
 			<string>come.aloftlabs.SNPs</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>SNPs</string>
+				<string>snps</string>
 			</array>
 		</dict>
 	</array>

@@ -21,10 +21,12 @@ class OAuthSwiftClient {
     var credential: OAuthSwiftCredential
     
     init(consumerKey: String, consumerSecret: String) {
+        println("14")
         self.credential = OAuthSwiftCredential(consumer_key: consumerKey, consumer_secret: consumerSecret)
     }
     
     init(consumerKey: String, consumerSecret: String, accessToken: String, accessTokenSecret: String) {
+        println("15")
         self.credential = OAuthSwiftCredential(oauth_token: accessToken, oauth_token_secret: accessTokenSecret)
         self.credential.consumer_key = consumerKey
         self.credential.consumer_secret = consumerSecret
@@ -32,6 +34,7 @@ class OAuthSwiftClient {
     }
     
     func get(urlString: String, parameters: Dictionary<String, AnyObject>, success: OAuthSwiftHTTPRequest.SuccessHandler?, failure: OAuthSwiftHTTPRequest.FailureHandler?) {
+        println("16")
         
         let url = NSURL(string: urlString)
         
@@ -48,6 +51,7 @@ class OAuthSwiftClient {
     }
     
     func post(urlString: String, parameters: Dictionary<String, AnyObject>, success: OAuthSwiftHTTPRequest.SuccessHandler?, failure: OAuthSwiftHTTPRequest.FailureHandler?) {
+        println("17")
         let url = NSURL(string: urlString)
         
         let method = "POST"
@@ -68,6 +72,7 @@ class OAuthSwiftClient {
     }
     
     class func authorizationHeaderForMethod(method: String, url: NSURL, parameters: Dictionary<String, AnyObject>, credential: OAuthSwiftCredential) -> String {
+        println("18")
         var authorizationParameters = Dictionary<String, AnyObject>()
         authorizationParameters["oauth_version"] = OAuth.version
         authorizationParameters["oauth_signature_method"] =  OAuth.signatureMethod
@@ -106,6 +111,7 @@ class OAuthSwiftClient {
     }
     
     class func oauthSignatureForMethod(method: String, url: NSURL, parameters: Dictionary<String, AnyObject>, credential: OAuthSwiftCredential) -> String {
+        println("19")
         var tokenSecret: NSString = ""
         tokenSecret = credential.oauth_token_secret.urlEncodedStringWithEncoding(dataEncoding)
         

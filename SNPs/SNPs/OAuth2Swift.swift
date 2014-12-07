@@ -27,12 +27,14 @@ class OAuth2Swift {
     }
 
     init(consumerKey: String, consumerSecret: String, authorizeUrl: String, responseType: String){
+        println("13")
         self.consumer_key = consumerKey
         self.consumer_secret = consumerSecret
         self.authorize_url = authorizeUrl
         self.response_type = responseType
         self.client = OAuthSwiftClient(consumerKey: consumerKey, consumerSecret: consumerSecret)
         self.client.credential = OAuthSwiftCredential()
+        self.access_token_url = "https://api.23andme.com/token/"
     }
     
     struct CallbackNotification {
@@ -97,13 +99,16 @@ class OAuth2Swift {
         parameters["client_secret"] = self.consumer_secret
         parameters["code"] = code
         parameters["grant_type"] = "authorization_code"
+        parameters["redirect_uri"] = "http://aloftlabs.com"
+        parameters["scope"] = "basic"
         
         self.client.post(self.access_token_url!, parameters: parameters, success: {
             data, response in
             let responseString = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-            println("11")
-            let parameters = responseString.parametersFromQueryString()
-            self.client.credential.oauth_token = parameters["access_token"]!
+            let newResponseString = responseString.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            println(newResponseString)
+            let parameters = newResponseString.parametersFromJSONString()
+            self.client.credential.oauth_token = parameters["{access_token"]!
             success(credential: self.client.credential, response: response)
         }, failure: failure)
     }

@@ -50,13 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIWebViewDelegate {
     
     func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
         println(url)
-        if (url.host == "SNPs:/") {
+        OAuth2Swift.handleOpenURL(url)
+        if (url.host == "snps") {
             println("5")
             if (url.path!.hasPrefix("/twitter") || url.path!.hasPrefix("/flickr") || url.path!.hasPrefix("/fitbit")
                 || url.path!.hasPrefix("/withings") || url.path!.hasPrefix("/linkedin")) {
                     println("Invalid URL")
             }
-            if ( url.path!.hasPrefix("/github" ) || url.path!.hasPrefix("/instagram" ) || url.path!.hasPrefix("/foursquare") || url.path!.hasPrefix("/callback") ) {
+            if ( url.path!.hasPrefix("/github" ) || url.path!.hasPrefix("/instagram" ) || url.path!.hasPrefix("/foursquare") || url.path!.hasPrefix("/23andme") ) {
                 OAuth2Swift.handleOpenURL(url)
             }
         

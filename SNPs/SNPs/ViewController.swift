@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             responseType:   "code"
         )
         println("1")
-        oauthswift.authorizeWithCallbackURL( NSURL(string: "SNPs://callback/")!, scope: "basic", state: "", success: {
+        oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "basic", state: "", success: {
             credential, response in
             println("2")
             self.showAlertView("23andMe", message: "oauth_token:\(credential.oauth_token)")
