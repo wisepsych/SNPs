@@ -84,6 +84,8 @@ class OAuthSwiftClient {
         
         if (credential.oauth_token != ""){
             authorizationParameters["Bearer"] = credential.oauth_token
+        } else {
+            authorizationParameters["Bearer"] = credential.oauth_token
         }
         
         for (key, value: AnyObject) in parameters {

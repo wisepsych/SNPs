@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             responseType:   "code"
         )
         println("1")
-        oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "basic", state: "", success: {
+        oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "rs3094315%20i3000001", state: "", success: {
             credential, response in
             println("2")
             //self.showAlertView("23andMe", message: "oauth_token:\(credential.oauth_token)")
@@ -46,16 +46,59 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //Send token to get client id
             oauthswift.client.get(url, parameters: parameters, success: {
                 data, response in
-                let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil)
                 println(jsonDict)
-                self.showAlertView("Client Info", message: "\(jsonDict)")}, failure: {(error:NSError!) -> Void in
+                self.showAlertView("Client Info", message: "\(jsonDict)")
+                if let item = jsonDict as? NSDictionary {
+                    if let clientID = item["id"] as? String {
+                    println(clientID)
+                        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(clientID)/?locations=rs3094315%20i3000001"
+                        let parameters: Dictionary = [
+                            "Authorization": "Bearer \(credential.oauth_token)",
+                            "access_token" : "\(credential.oauth_token)"
+                        ]
+                        oauthswift.client.get(genotypeGetURL, parameters: parameters, success: {
+                            data, response in
+                            let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                            println(jsonDict)
+                            }, failure: {(error:NSError!) -> Void in
+                                println(error.localizedDescription)
+                        })
+                    }
+                }
+                
+                
+                }, failure: {(error:NSError!) -> Void in
                     println(error.localizedDescription)
             })
             }, failure: {(error:NSError!) -> Void in
                 println(error.localizedDescription)
         })
-        //Send client id to get genotype info
+        
+        
     }
+    
+ /*   func getGenotypeInfo(customerID: AnyObject, token: String) {
+        let oauthSwift = OAuth2Swift(
+            consumerKey:    AndMe["consumerKey"]!,
+            consumerSecret: AndMe["consumerSecret"]!,
+            authorizeUrl:   "https://api.23andme.com/authorize",
+            responseType:   "code"
+        )
+        //Send client to get genotype info
+        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(customerID)/?locations=rs3094315%20i3000001"
+        let parameters: Dictionary = [
+            "Authorization": "Bearer \(credential.oauth_token)",
+            "access_token" : "\(token)"
+        ]
+        oauthSwift.client.get(genotypeGetURL, parameters: parameters, success: {
+            data, response in
+            let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+            println(jsonDict)
+            }, failure: {(error:NSError!) -> Void in
+                println(error.localizedDescription)
+        })
+    } */
     
     func showAlertView(title: String, message: String) {
         println("3")
