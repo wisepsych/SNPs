@@ -27,5 +27,5 @@ let Foursquare =
 let AndMe =
 [
     "consumerKey": "3269d1f65bdde100643253db496f5e27",
-    "consumerSecret": "18aab2c35368fcc30e664799ef218284"
+    "consumerSecret": "0e9e0d44abe2e770f8c6e699ab24797b"
 ]
