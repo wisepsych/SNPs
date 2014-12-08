@@ -22,6 +22,7 @@
 		E796E6D31A33D723008E2939 /* NSURL+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796E6D21A33D723008E2939 /* NSURL+OAuthSwift.swift */; };
 		E796E6D51A33D72E008E2939 /* String+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796E6D41A33D72E008E2939 /* String+OAuthSwift.swift */; };
 		E796E6DA1A33D772008E2939 /* HMACSHA1Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */; };
+		E7A4EE2B1A36350C00895A46 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		E796E6D61A33D772008E2939 /* SNPs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SNPs-Bridging-Header.h"; sourceTree = "<group>"; };
 		E796E6D71A33D772008E2939 /* HMACSHA1Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMACSHA1Signature.h; sourceTree = "<group>"; };
 		E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMACSHA1Signature.m; sourceTree = "<group>"; };
+		E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				E796E6CF1A33D6FA008E2939 /* extension */,
 				E762B4061A33988A00E130D7 /* Supporting Files */,
 				E796E6D61A33D772008E2939 /* SNPs-Bridging-Header.h */,
+				E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */,
 				E796E6D71A33D772008E2939 /* HMACSHA1Signature.h */,
 				E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */,
 			);
@@ -255,6 +258,7 @@
 				E796E6D51A33D72E008E2939 /* String+OAuthSwift.swift in Sources */,
 				E796E6CE1A33D6BA008E2939 /* OAuthSwiftHTTPRequest.swift in Sources */,
 				E762B40B1A33988A00E130D7 /* ViewController.swift in Sources */,
+				E7A4EE2B1A36350C00895A46 /* SwiftyJSON.swift in Sources */,
 				E796E6D31A33D723008E2939 /* NSURL+OAuthSwift.swift in Sources */,
 				E762B4091A33988A00E130D7 /* AppDelegate.swift in Sources */,
 				E796E6C61A33D5EE008E2939 /* OAuth2Swift.swift in Sources */,

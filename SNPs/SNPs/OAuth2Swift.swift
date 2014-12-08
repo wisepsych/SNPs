@@ -100,7 +100,7 @@ class OAuth2Swift {
         parameters["code"] = code
         parameters["grant_type"] = "authorization_code"
         parameters["redirect_uri"] = "http://aloftlabs.com"
-        parameters["scope"] = "rs3094315%20i3000001"
+        parameters["scope"] = "rs1801133%20rs1801131%20basic"
         
         self.client.post(self.access_token_url!, parameters: parameters, success: {
             data, response in

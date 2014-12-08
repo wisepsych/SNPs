@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             responseType:   "code"
         )
         println("1")
-        oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "rs3094315%20i3000001", state: "", success: {
+        oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "rs1801133%20rs1801131%20basic", state: "", success: {
             credential, response in
             println("2")
             //self.showAlertView("23andMe", message: "oauth_token:\(credential.oauth_token)")
@@ -48,25 +48,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 data, response in
                 let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil)
                 println(jsonDict)
-                self.showAlertView("Client Info", message: "\(jsonDict)")
-                if let item = jsonDict as? NSDictionary {
-                    if let clientID = item["id"] as? String {
-                    println(clientID)
-                        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(clientID)/?locations=rs3094315%20i3000001"
-                        let parameters: Dictionary = [
-                            "Authorization": "Bearer \(credential.oauth_token)",
-                            "access_token" : "\(credential.oauth_token)"
-                        ]
-                        oauthswift.client.get(genotypeGetURL, parameters: parameters, success: {
-                            data, response in
-                            let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
-                            println(jsonDict)
-                            }, failure: {(error:NSError!) -> Void in
-                                println(error.localizedDescription)
-                        })
-                    }
-                }
                 
+        //        self.showAlertView("Client Info", message: "\(jsonDict)")
+                
+                if let profile = jsonDict["profiles"]! as? NSArray  {
+                    println("profile: \(profile)")
+                    
+                    if let profileDict = profile[0] as? NSDictionary {
+                        println("profileDict: \(profileDict)")
+                    
+                        if let clientID: AnyObject = profileDict["id"]  {
+                            println(clientID)
+                        
+                        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(clientID)/?locations=rs1801133%20rs1801131"
+                            let parameters: Dictionary = [
+                                "Authorization": "Bearer \(credential.oauth_token)",
+                                "access_token" : "\(credential.oauth_token)"
+                            ]
+                            oauthswift.client.get(genotypeGetURL, parameters: parameters, success: {
+                                data, response in
+                                let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                                println(jsonDict)
+                                self.showAlertView("Genotype Results", message: "\(jsonDict)")
+                                }, failure: {(error:NSError!) -> Void in
+                                    println(error.localizedDescription)
+                        })
+                        }}
+                }
+        
                 
                 }, failure: {(error:NSError!) -> Void in
                     println(error.localizedDescription)
@@ -86,7 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             responseType:   "code"
         )
         //Send client to get genotype info
-        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(customerID)/?locations=rs3094315%20i3000001"
+        let genotypeGetURL: String = "https://api.23andme.com/1/genotypes/\(customerID)/?locations=rs3094315%20basic"
         let parameters: Dictionary = [
             "Authorization": "Bearer \(credential.oauth_token)",
             "access_token" : "\(token)"

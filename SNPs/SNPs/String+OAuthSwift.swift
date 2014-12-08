@@ -46,6 +46,14 @@ extension String {
         return parameters
     }
     
+ /*   func fromAnyObjectToJSON(AnyObject) -> Dictionary<String, String> {
+        var profileJSON = Dictionary<String, String>()
+        
+        let scanner = NSScanner(string: self)
+        
+        
+    }*/
+    
     func parametersFromJSONString() -> Dictionary<String, String> {
         var parameters = Dictionary<String, String>()
         
