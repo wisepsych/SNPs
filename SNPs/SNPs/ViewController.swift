@@ -36,10 +36,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         oauthswift.authorizeWithCallbackURL( NSURL(string: "http://aloftlabs.com")!, scope: "basic", state: "", success: {
             credential, response in
             println("2")
-            self.showAlertView("23andMe", message: "oauth_token:\(credential.oauth_token)")
+            //self.showAlertView("23andMe", message: "oauth_token:\(credential.oauth_token)")
+            let authorization = "Authorization: Bearer \(credential.oauth_token)"
+            let url: String = "https://api.23andme.com/1/user/"
+            let parameters: Dictionary = [
+                "Authorization": "Bearer \(credential.oauth_token)",
+                "access_token" : "\(credential.oauth_token)"
+            ]
+            //Send token to get client id
+            oauthswift.client.get(url, parameters: parameters, success: {
+                data, response in
+                let jsonDict: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                println(jsonDict)
+                self.showAlertView("Client Info", message: "\(jsonDict)")}, failure: {(error:NSError!) -> Void in
+                    println(error.localizedDescription)
+            })
             }, failure: {(error:NSError!) -> Void in
                 println(error.localizedDescription)
         })
+        //Send client id to get genotype info
     }
     
     func showAlertView(title: String, message: String) {

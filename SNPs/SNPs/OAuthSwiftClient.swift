@@ -43,6 +43,8 @@ class OAuthSwiftClient {
         let request = OAuthSwiftHTTPRequest(URL: url!, method: method, parameters: parameters)
         request.headers = ["Authorization": OAuthSwiftClient.authorizationHeaderForMethod(method, url: url!, parameters: parameters, credential: self.credential)]
         
+        println(request.headers)
+        
         request.successHandler = success
         request.failureHandler = failure
         request.dataEncoding = dataEncoding
@@ -74,14 +76,14 @@ class OAuthSwiftClient {
     class func authorizationHeaderForMethod(method: String, url: NSURL, parameters: Dictionary<String, AnyObject>, credential: OAuthSwiftCredential) -> String {
         println("18")
         var authorizationParameters = Dictionary<String, AnyObject>()
-        authorizationParameters["oauth_version"] = OAuth.version
-        authorizationParameters["oauth_signature_method"] =  OAuth.signatureMethod
-        authorizationParameters["oauth_consumer_key"] = credential.consumer_key
-        authorizationParameters["oauth_timestamp"] = String(Int64(NSDate().timeIntervalSince1970))
-        authorizationParameters["oauth_nonce"] = (NSUUID().UUIDString as NSString).substringToIndex(8)
+ //       authorizationParameters["oauth_version"] = OAuth.version
+ //       authorizationParameters["oauth_signature_method"] =  OAuth.signatureMethod
+ //       authorizationParameters["oauth_consumer_key"] = credential.consumer_key
+ //       authorizationParameters["oauth_timestamp"] = String(Int64(NSDate().timeIntervalSince1970))
+ //       authorizationParameters["oauth_nonce"] = (NSUUID().UUIDString as NSString).substringToIndex(8)
         
         if (credential.oauth_token != ""){
-            authorizationParameters["oauth_token"] = credential.oauth_token
+            authorizationParameters["Bearer"] = credential.oauth_token
         }
         
         for (key, value: AnyObject) in parameters {
@@ -94,7 +96,7 @@ class OAuthSwiftClient {
         
         let finalParameters = combinedParameters
         
-        authorizationParameters["oauth_signature"] = self.oauthSignatureForMethod(method, url: url, parameters: finalParameters, credential: credential)
+//        authorizationParameters["oauth_signature"] = self.oauthSignatureForMethod(method, url: url, parameters: finalParameters, credential: credential)
         
         var authorizationParameterComponents = authorizationParameters.urlEncodedQueryStringWithEncoding(dataEncoding).componentsSeparatedByString("&") as [String]
         authorizationParameterComponents.sort { $0 < $1 }
@@ -103,11 +105,11 @@ class OAuthSwiftClient {
         for component in authorizationParameterComponents {
             let subcomponent = component.componentsSeparatedByString("=") as [String]
             if subcomponent.count == 2 {
-                headerComponents.append("\(subcomponent[0])=\"\(subcomponent[1])\"")
+                headerComponents.append("\(subcomponent[0])  \(subcomponent[1])")
             }
         }
         
-        return "OAuth " + ", ".join(headerComponents)
+        return " " + ", ".join(headerComponents)
     }
     
     class func oauthSignatureForMethod(method: String, url: NSURL, parameters: Dictionary<String, AnyObject>, credential: OAuthSwiftCredential) -> String {
