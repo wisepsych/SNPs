@@ -23,6 +23,8 @@
 		E796E6D51A33D72E008E2939 /* String+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796E6D41A33D72E008E2939 /* String+OAuthSwift.swift */; };
 		E796E6DA1A33D772008E2939 /* HMACSHA1Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */; };
 		E7A4EE2B1A36350C00895A46 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */; };
+		E7A4EE2D1A36657000895A46 /* Genotypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A4EE2C1A36657000895A46 /* Genotypes.swift */; };
+		E7A4EE2F1A366DAB00895A46 /* GeneData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A4EE2E1A366DAB00895A46 /* GeneData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		E796E6D71A33D772008E2939 /* HMACSHA1Signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMACSHA1Signature.h; sourceTree = "<group>"; };
 		E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMACSHA1Signature.m; sourceTree = "<group>"; };
 		E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		E7A4EE2C1A36657000895A46 /* Genotypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genotypes.swift; sourceTree = "<group>"; };
+		E7A4EE2E1A366DAB00895A46 /* GeneData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 				E762B40A1A33988A00E130D7 /* ViewController.swift */,
 				E762B40C1A33988A00E130D7 /* Main.storyboard */,
 				E796E6C71A33D618008E2939 /* Constants.swift */,
+				E7A4EE2C1A36657000895A46 /* Genotypes.swift */,
 				E796E6C51A33D5EE008E2939 /* OAuth2Swift.swift */,
 				E796E6C91A33D643008E2939 /* OAuthSwiftClient.swift */,
 				E796E6CB1A33D660008E2939 /* OAuthSwiftCredential.swift */,
@@ -115,6 +120,7 @@
 				E7A4EE2A1A36350C00895A46 /* SwiftyJSON.swift */,
 				E796E6D71A33D772008E2939 /* HMACSHA1Signature.h */,
 				E796E6D81A33D772008E2939 /* HMACSHA1Signature.m */,
+				E7A4EE2E1A366DAB00895A46 /* GeneData.swift */,
 			);
 			path = SNPs;
 			sourceTree = "<group>";
@@ -257,9 +263,11 @@
 			files = (
 				E796E6D51A33D72E008E2939 /* String+OAuthSwift.swift in Sources */,
 				E796E6CE1A33D6BA008E2939 /* OAuthSwiftHTTPRequest.swift in Sources */,
+				E7A4EE2D1A36657000895A46 /* Genotypes.swift in Sources */,
 				E762B40B1A33988A00E130D7 /* ViewController.swift in Sources */,
 				E7A4EE2B1A36350C00895A46 /* SwiftyJSON.swift in Sources */,
 				E796E6D31A33D723008E2939 /* NSURL+OAuthSwift.swift in Sources */,
+				E7A4EE2F1A366DAB00895A46 /* GeneData.swift in Sources */,
 				E762B4091A33988A00E130D7 /* AppDelegate.swift in Sources */,
 				E796E6C61A33D5EE008E2939 /* OAuth2Swift.swift in Sources */,
 				E796E6C81A33D618008E2939 /* Constants.swift in Sources */,
